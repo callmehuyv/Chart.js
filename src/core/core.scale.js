@@ -1126,8 +1126,18 @@ var Scale = Element.extend({
 					y += tickFont.lineHeight;
 				}
 			} else {
+				var originalFont = ctx.font;
+				if (me.chart.config.boldLabelValue === label) {
+					ctx.font = me.chart.config.boldLabelStyle;
+				}
+
 				ctx.fillText(label, 0, y);
+
+				if (me.chart.config.boldLabelValue === label) {
+		          ctx.font = originalFont;
+		        }
 			}
+
 			ctx.restore();
 		});
 	},
